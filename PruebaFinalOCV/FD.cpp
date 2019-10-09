@@ -1,5 +1,6 @@
 #include<iostream>
 #include<stdlib.h>
+
 #include<opencv2\objdetect\objdetect.hpp>
 #include<opencv2\imgproc\imgproc.hpp>
 #include<opencv2\highgui\highgui.hpp>
@@ -21,7 +22,7 @@ int main(int argc, char** argv) {
 		Mat frame;
 		cap >> frame;
 		if (frame.empty()) break; // end of video stream
-		imshow("this is you, smile! :)", frame);
+		imshow("FaceDetection works", frame);
 		if (waitKey(10) == 27) break; // stop capturing by pressing ESC 
 	}
 
@@ -48,23 +49,28 @@ int main(int argc, char** argv) {
 		cout << "\nSe encontró la foto\nProcesando";
 	
 		vector<Rect>faces;
-		Mat vid;
+		Mat frame;
 
-		vector<Rect>rostros;
-
-		faceDetection.detectMultiScale(rostros, faces);
-	
-		for (int i = 0; i < faces.size(); i++)
+		cap = VideoCapture(0);
+		
+		if (cap.isOpened())
 		{
-			Point pt1(faces[i].x, faces[i].y);
-			Point pt2((faces[i].x + faces[i].height), (faces[i].y + faces[i].width));
+			cap >> frame;
 
-			rectangle(rostros, pt1, pt2, Scalar(0, 0, 255), 2, 8, 0);
-		}//fin for
+			faceDetection.detectMultiScale(frame, faces);
 
-		cout << "\nSe detectaron rostros";
+			for (int i = 0; i < faces.size(); i++)
+			{
+				Point pt1(faces[i].x, faces[i].y);
+				Point pt2((faces[i].x + faces[i].height), (faces[i].y + faces[i].width));
+
+				rectangle(frame, pt1, pt2, Scalar(0, 0, 255), 2, 8, 0);
+			}//fin for
+
+			cout << "\nSe detectaron rostros";
+		}
+
+
 	}
-
-
 	return 0;
 }
