@@ -3,8 +3,8 @@
 #define FaceDetector_hpp
 
 #include <stdio.h>
-#include <opencv2/opencv.hpp>
-
+#include <opencv2\opencv.hpp>
+#include <string>
 class FaceDetector
 {
 private:
@@ -17,7 +17,7 @@ FaceDetector();
 {
 };
 std::vector<cv::Rect> nextFrame (cv::Mat frame);
-std::vector<cv::Rect> ImgDetect  (string path);
+std::vector<cv::Rect> ImgDetect  (std::string path);
 };
 
 #endif /* FaceDetector_hpp */

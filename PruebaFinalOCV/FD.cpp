@@ -1,3 +1,4 @@
+/*
 #include<iostream>
 #include<stdlib.h>
 #include<opencv2\objdetect\objdetect.hpp>
@@ -50,3 +51,4 @@ int main() {
 
 	return 0;
 }
+*/
